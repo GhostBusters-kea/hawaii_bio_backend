@@ -4,7 +4,7 @@
 ![GitHub contributors](https://img.shields.io/github/contributors/GhostBusters-kea/hawaii_bio_backend)
 ![GitHub stars](https://img.shields.io/github/stars/GhostBusters-kea/hawaii_bio_backend)
 ![GitHub forks](https://img.shields.io/github/forks/GhostBusters-kea/hawaii_bio_backend)
-![example workflow](https://github.com/GhostBusters-kea/hawaii_bio_backend/actions/workflows/<WORKFLOW_FILE>/badge.svg)
+![Build](https://github.com/GhostBusters-kea/hawaii_bio_backend/actions/workflows/<WORKFLOW_FILE>/badge.svg)
 
 
 ## Group members
