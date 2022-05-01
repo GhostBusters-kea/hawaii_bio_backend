@@ -1,9 +1,10 @@
 # Hawaii Bio
 
-![GitHub repo size](https://img.shields.io/github/repo-size/GhostBusters-kea/Library_Backend)
-![GitHub contributors](https://img.shields.io/github/contributors/GhostBusters-kea/Library_Backend)
-![GitHub stars](https://img.shields.io/github/stars/GhostBusters-kea/Library_Backend)
-![GitHub forks](https://img.shields.io/github/forks/GhostBusters-kea/Library_Backend)
+![GitHub repo size](https://img.shields.io/github/repo-size/GhostBusters-kea/hawaii_bio_backend)
+![GitHub contributors](https://img.shields.io/github/contributors/GhostBusters-kea/hawaii_bio_backend)
+![GitHub stars](https://img.shields.io/github/stars/GhostBusters-kea/hawaii_bio_backend)
+![GitHub forks](https://img.shields.io/github/forks/GhostBusters-kea/hawaii_bio_backend)
+![example workflow](https://github.com/GhostBusters-kea/Library_Backend/actions/workflows/<WORKFLOW_FILE>/badge.svg)
 
 
 ## Group members
