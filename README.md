@@ -15,11 +15,14 @@
 
 
 ## Link to deployed backend
+[Deployed backend](https://hawaiibio.azurewebsites.net)
 
 ## Link to frontend repo
 [Frontend Repo](https://github.com/GhostBusters-kea/hawaii_bio_frontend)
 
+
 ## Link to deployed frontend
+[Deployed frontend](https://red-mud-0b22fbf03.1.azurestaticapps.net/)
 
 ## Sprint 1 
 Sprint 1 will include initial setup of pipeline and connection to MySQl database as well as backend entity, 
