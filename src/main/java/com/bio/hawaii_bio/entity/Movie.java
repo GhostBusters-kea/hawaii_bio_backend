@@ -1,6 +1,8 @@
 package com.bio.hawaii_bio.entity;
 
 
+import com.bio.hawaii_bio.dto.MovieRequest;
+import com.bio.hawaii_bio.dto.MovieResponse;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -23,6 +25,15 @@ public class Movie {
     private int length;
     private String description;
     private int ageLimit;
+
+
+    public Movie(MovieRequest body){
+        this.category=body.getCategory();
+        this.title=body.getTitle();
+        this.length=body.getLength();
+        this.description= body.getTitle();
+        this.ageLimit=body.getAgeLimit();
+    }
 }
 
 
