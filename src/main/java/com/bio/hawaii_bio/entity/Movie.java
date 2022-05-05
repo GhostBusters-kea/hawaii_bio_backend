@@ -19,7 +19,7 @@ public class Movie {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String title;
-    @Column(columnDefinition = "ENUM('THRILLER', 'COMEDY', 'ROMANCE', 'SCIENCE_FICTION','HORROR')")
+    @Column(columnDefinition = "ENUM('THRILLER', 'COMEDY', 'ROMANCE', 'SCIENCE_FICTION','HORROR','ADVENTURE','DRAMA','ACTION')")
     @Enumerated(EnumType.STRING)
     private Category category;
     private int length;
@@ -31,7 +31,7 @@ public class Movie {
         this.category=body.getCategory();
         this.title=body.getTitle();
         this.length=body.getLength();
-        this.description= body.getTitle();
+        this.description= body.getDescription();
         this.ageLimit=body.getAgeLimit();
     }
 }
