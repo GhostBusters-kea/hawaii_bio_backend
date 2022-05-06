@@ -10,7 +10,7 @@
 * Create api classes for Cinema, Customer, Movie, Ticket, Reservation and Category
 ## Contributions
 * Michael Dyvad ([@MichaelDyvad](https://github.com/MichaelDyvad))
-  * Entity, dto, repo, service and api classes for performance and cinemahall (user) with full CRUD
+  * Entity, dto, repo, service and api classes for performance and cinemahall with full CRUD
   * Set up CI/CD pipeline, virtuel machine, static web app and azure app service
 * Kevin Funch ([@KevinFHansen](https://github.com/KevinFHansen))
   * Initial setup of git repos and project structure
