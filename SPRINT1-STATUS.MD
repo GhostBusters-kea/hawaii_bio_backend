@@ -19,5 +19,9 @@
 * Lars Brogaard Kaiser ([@mrbrogaardkaiser](https://github.com/mrbrogaardkaiser))
   * Entity, dto, repo, service and api classes for Movie with full CRUD
   * Entity, dto, repo, service and api classes for Category (user) with full CRUD
+  * Set up CI/CD pipeline, virtuel machine, static web app and azure app service
 ## Sprint 2 tasks
 * Unit and Integration test
+* Html skeleton and navbar
+* Fetch methods and crud for all relevant classes
+
