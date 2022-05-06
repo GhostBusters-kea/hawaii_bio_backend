@@ -15,5 +15,7 @@
   * Initial setup of git repos and project structure
   * Entity, dto, repo, service and api classes for customer (user) with full CRUD
 * Lars Brogaard Kaiser ([@mrbrogaardkaiser](https://github.com/mrbrogaardkaiser))
+  * Entity, dto, repo, service and api classes for Movie with full CRUD
+  * Entity, dto, repo, service and api classes for Category (user) with full CRUD
 ## Sprint 2 tasks
 * Unit and Integration test
