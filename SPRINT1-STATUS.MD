@@ -13,6 +13,9 @@
   * Entity, dto, repo, service and api classes for performance and cinemahall (user) with full CRUD
   * Set up CI/CD pipeline, virtuel machine, static web app and azure app service
 * Kevin Funch ([@KevinFHansen](https://github.com/KevinFHansen))
+  * Initial setup of git repos and project structure
+  * Entity, dto, repo, service and api classes for reservation & ticket with full CRUD
+  * CI/CD Pipeline, VM setup
 * Jonas Munk ([@jmunkc](https://github.com/jmunkc))
   * Initial setup of git repos and project structure
   * Entity, dto, repo, service and api classes for customer (user) with full CRUD
