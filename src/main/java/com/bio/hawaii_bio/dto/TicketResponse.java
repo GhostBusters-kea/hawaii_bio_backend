@@ -3,12 +3,20 @@ package com.bio.hawaii_bio.dto;
 import com.bio.hawaii_bio.entity.Performance;
 import com.bio.hawaii_bio.entity.Ticket;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
 public class TicketResponse {
     private int id;
     private Performance dateOfPerformance;
