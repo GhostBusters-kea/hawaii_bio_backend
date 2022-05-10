@@ -21,6 +21,7 @@ public class PerformanceResponse {
     private Movie movie;
 
     public PerformanceResponse(Performance performance){
+        this.id = performance.getId();
         this.date = performance.getDate();
         this.movie = performance.getMovie();
     }

@@ -24,8 +24,8 @@ public class PerformanceController {
     }
 
     @GetMapping("/{id}")
-    public PerformanceResponse getPerformancesOnId(@PathVariable int id){
-        return (performanceService.getPerformance(id));
+    public List<PerformanceResponse> getPerformancesOnId(@PathVariable int id){
+        return (performanceService.getPerformanceOnMovieId(id));
     }
 
     @PostMapping

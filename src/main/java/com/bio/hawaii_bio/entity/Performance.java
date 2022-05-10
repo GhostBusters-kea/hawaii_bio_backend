@@ -24,6 +24,7 @@ public class Performance {
     private Movie movie;
 
     public Performance(PerformanceRequest body){
+        this.id = body.getId();
         this.date = body.getDate();
         this.movie = body.getMovie();
     }

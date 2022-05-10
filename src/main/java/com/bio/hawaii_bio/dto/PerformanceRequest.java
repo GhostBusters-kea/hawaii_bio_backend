@@ -14,6 +14,7 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @AllArgsConstructor
 public class PerformanceRequest {
+    private int id;
     private LocalDateTime date;
     private Movie movie;
 
