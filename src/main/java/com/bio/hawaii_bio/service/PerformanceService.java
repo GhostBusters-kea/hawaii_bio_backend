@@ -27,6 +27,11 @@ public class PerformanceService {
         return new PerformanceResponse(performance);
     }
 
+    public List<PerformanceResponse> getPerformanceOnMovieId(int id){
+        List<Performance> performances = performanceRepo.findPerformancesByMovieId(id);
+        return PerformanceResponse.getPerfromanceFromEntities(performances);
+    }
+
     public PerformanceResponse addNewPerformance(PerformanceRequest body){
         Performance performance = performanceRepo.save(new Performance(body));
         return new PerformanceResponse(performance);
