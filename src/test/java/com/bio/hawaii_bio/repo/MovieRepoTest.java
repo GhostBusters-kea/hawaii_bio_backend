@@ -1,5 +1,6 @@
 package com.bio.hawaii_bio.repo;
 
+import com.bio.hawaii_bio.entity.Category;
 import com.bio.hawaii_bio.entity.Movie;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
@@ -23,10 +24,15 @@ class MovieRepoTest {
 
     @BeforeEach
     void setUp(@Autowired MovieRepo movieRepo) {
-        Movie movie1 = movieRepo.save(new Movie());
-        movieid1 = movie1.getId();
-        Movie movie2 = movieRepo.save(new Movie());
+        Movie movie1 = new Movie();
+        Movie movie2 = new Movie();
+        movie1.setCategory(Category.SCIENCE_FICTION);
+        movie2.setCategory(Category.DRAMA);
+        movieRepo.save(movie1);
+        movieRepo.save(movie2);
+        movieid1 = movie1.getId(); // Vi gemmer i test-db
         movieid2= movie2.getId();
+
 
     }
 
@@ -35,4 +41,14 @@ class MovieRepoTest {
         List<Movie> movies = movieRepo.findAll();
         assertEquals(2, movies.size());
     }
+
+    @Test
+    public void testFindMoviesByCategory(){
+        List<Movie> movies = movieRepo.findMoviesByCategory(Category.SCIENCE_FICTION);
+        assertEquals(1, movies.size());
+        assertEquals(Category.SCIENCE_FICTION, movies.get(0).getCategory());
+
+
+    }
+
 }

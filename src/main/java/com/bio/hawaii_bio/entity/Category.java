@@ -9,6 +9,6 @@ public enum Category {
     SCIENCE_FICTION,
     HORROR,
     ACTION,
-    ADVENTUR,
+    ADVENTURE,
     DRAMA,
 }

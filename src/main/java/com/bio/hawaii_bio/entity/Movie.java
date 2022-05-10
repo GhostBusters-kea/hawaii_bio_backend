@@ -3,6 +3,7 @@ package com.bio.hawaii_bio.entity;
 
 import com.bio.hawaii_bio.dto.MovieRequest;
 import com.bio.hawaii_bio.dto.MovieResponse;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -19,7 +20,7 @@ public class Movie {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String title;
-    @Column(columnDefinition = "ENUM('THRILLER', 'COMEDY', 'ROMANCE', 'SCIENCE_FICTION','HORROR','ADVENTURE','DRAMA','ACTION')")
+    @Column(columnDefinition = "ENUM('THRILLER', 'COMEDY', 'ROMANCE', 'SCIENCE_FICTION', 'HORROR', 'ADVENTURE', 'DRAMA', 'ACTION')")
     @Enumerated(EnumType.STRING)
     private Category category;
     private int length;
@@ -33,6 +34,14 @@ public class Movie {
         this.length=body.getLength();
         this.description= body.getDescription();
         this.ageLimit=body.getAgeLimit();
+    }
+
+    public Movie(String title, Category category, int length, String description, int ageLimit) {
+        this.title = title;
+        this.category = category;
+        this.length = length;
+        this.description = description;
+        this.ageLimit = ageLimit;
     }
 }
 

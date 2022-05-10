@@ -28,10 +28,9 @@ public class MovieService {
         return new MovieResponse(movie, all);
     }
 
-
     // Only for admins
     public void addMovie(MovieRequest body){
-        Movie movie = movieRepo.save(new Movie(body));
+        movieRepo.save(new Movie(body));
     }
 
     public void editMovie(MovieRequest body, int movieId){
