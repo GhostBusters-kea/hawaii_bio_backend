@@ -9,6 +9,8 @@
     * Test for Performance repo and service
     * Updated backend for performance
 * Kevin Funch ([@KevinFHansen](https://github.com/KevinFHansen))
+    * Functions for tickets and reservations
+    * Updated backend for performance
 
 * Jonas Munk ([@jmunkc](https://github.com/jmunkc))
 
