@@ -2,16 +2,17 @@ package com.bio.hawaii_bio.entity;
 
 import com.bio.hawaii_bio.dto.UserRequest;
 import com.bio.hawaii_bio.security.UserWithPassword;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
-
 import javax.persistence.*;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
+
 
 @Getter @Setter @NoArgsConstructor
 @Entity
@@ -57,6 +58,14 @@ public class User implements UserWithPassword {
     @UpdateTimestamp
     LocalDateTime edited;
 
+    @JsonIgnore
+    @OneToMany(
+            mappedBy = "user",
+            cascade = CascadeType.ALL,
+            orphanRemoval = true
+    )
+    private Set<Reservation> reservations = new HashSet<>();
+
     // Employee and Admin
     public User(int phoneNumber, String username, String firstName, String lastName, String email, String password,
                 String address, String city, int zip, Role role) {
@@ -70,6 +79,9 @@ public class User implements UserWithPassword {
         this.city = city;
         this.zip = zip;
         this.role = role;
+        if (role == Role.ADMIN){
+            this.isAdmin = true;
+        }
     }
 
     // Member
@@ -94,12 +106,14 @@ public class User implements UserWithPassword {
         switch (role) {
             case CUSTOMER:
                 this.phoneNumber = body.getPhoneNumber();
+                this.isAdmin = false;
             case MEMBER:
                 this.phoneNumber = body.getPhoneNumber();
                 this.username = body.getUsername();
                 this.firstName = body.getFirstName();
                 this.lastName = body.getLastName();
                 this.email = body.getEmail();
+                this.isAdmin = false;
             case EMPLOYEE:
                 this.phoneNumber = body.getPhoneNumber();
                 this.username = body.getUsername();
@@ -109,6 +123,7 @@ public class User implements UserWithPassword {
                 this.address = body.getAddress();
                 this.city = body.getCity();
                 this.zip = body.getZip();
+                this.isAdmin = false;
             case ADMIN:
                 this.phoneNumber = body.getPhoneNumber();
                 this.username = body.getUsername();
@@ -118,17 +133,9 @@ public class User implements UserWithPassword {
                 this.address = body.getAddress();
                 this.city = body.getCity();
                 this.zip = body.getZip();
+                this.isAdmin = true;
         }
     }
-
-
-//    @JsonIgnore
-//    @OneToMany(
-//            mappedBy = "user",
-//            cascade = CascadeType.ALL,
-//            orphanRemoval = true
-//    )
-//    private Set<Reservation> reservations = new HashSet<>();
 
     @Override
     public void setPassword(String password) {

@@ -5,7 +5,12 @@ import com.bio.hawaii_bio.entity.Movie;
 import com.bio.hawaii_bio.entity.Performance;
 import com.bio.hawaii_bio.repo.MovieRepo;
 import com.bio.hawaii_bio.repo.PerformanceRepo;
+import com.bio.hawaii_bio.entity.Role;
+import com.bio.hawaii_bio.entity.User;
+import com.bio.hawaii_bio.repo.MovieRepo;
+import com.bio.hawaii_bio.repo.UserRepo;
 import com.bio.hawaii_bio.service.MovieService;
+import com.bio.hawaii_bio.service.UserService;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.context.annotation.Profile;
@@ -19,10 +24,12 @@ public class MakeTestData implements ApplicationRunner {
 
     MovieRepo movieRepo;
     PerformanceRepo performanceRepo;
+  UserRepo userRepo;
 
-    public MakeTestData(MovieRepo movieRepo, PerformanceRepo performanceRepo) {
+    public MakeTestData(MovieRepo movieRepo, PerformanceRepo performanceRepo,UserRepo userRepo) {
         this.movieRepo = movieRepo;
-        this.performanceRepo = performanceRepo;
+       this.performanceRepo = performanceRepo;
+      this.userRepo = userRepo
     }
 
     public void makeTestData(){
@@ -40,6 +47,7 @@ public class MakeTestData implements ApplicationRunner {
         movieRepo.save(e);
         movieRepo.save(f);
         movieRepo.save(g);
+
 
         Performance p1 = new Performance();
         Performance p = new Performance();
@@ -83,6 +91,21 @@ public class MakeTestData implements ApplicationRunner {
 
 
 
+
+
+        // User test data
+        User adm = new User(12345678, "adm", "a", "aa", "a@mail.com",
+                "1234", "street", "city", 2000, Role.ADMIN);
+        User emp = new User(23456789, "emp", "b", "bb", "b@mail.com",
+                "1234", "street", "city", 2000, Role.EMPLOYEE);
+        User mem = new User(34567891, "mem", "c", "cc", "c@mail.com",
+                "1234", Role.MEMBER);
+        User cus = new User(45678912, Role.CUSTOMER);
+
+        userRepo.save(adm);
+        userRepo.save(emp);
+        userRepo.save(mem);
+        userRepo.save(cus);
 
 
 

@@ -42,7 +42,7 @@ public class UserService {
     }
 
     public UserResponse editUser(UserRequest body, int phoneNumber){
-        if(!(userRepo.existsById(phoneNumber))){
+        if(!(userRepo.existsById(body.getPhoneNumber()))){
             throw new Client4xxException("No Such User exists");
         }
         User UserToEdit = new User(body, body.getRole());
