@@ -28,4 +28,15 @@ public class Performance {
         this.date = body.getDate();
         this.movie = body.getMovie();
     }
+
+    public Performance(LocalDateTime date, Movie movie){
+        this.date=date;
+        this.movie=movie;
+        movie.addPerformance(this);
+    }
+
+    public void setMovie(Movie movie){
+        this.movie=movie;
+    }
+
 }

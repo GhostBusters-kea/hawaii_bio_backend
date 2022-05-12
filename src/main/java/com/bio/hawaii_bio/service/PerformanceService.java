@@ -50,4 +50,14 @@ public class PerformanceService {
         }
         performanceRepo.deleteById(performanceId);
     }
+
+    public Performance getPerformanceById(int id){
+        return performanceRepo.findById(id).orElseThrow(()-> new Client4xxException("No performance with that id"));
+    }
+
+    public void addMovieToPerformance(Performance performance){
+        performanceRepo.save(performance);
+    }
+
+
 }

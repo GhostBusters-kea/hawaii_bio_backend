@@ -2,7 +2,9 @@ package com.bio.hawaii_bio.api;
 
 import com.bio.hawaii_bio.dto.PerformanceRequest;
 import com.bio.hawaii_bio.dto.PerformanceResponse;
+import com.bio.hawaii_bio.entity.Movie;
 import com.bio.hawaii_bio.entity.Performance;
+import com.bio.hawaii_bio.service.MovieService;
 import com.bio.hawaii_bio.service.PerformanceService;
 import org.springframework.web.bind.annotation.*;
 
@@ -13,9 +15,11 @@ import java.util.List;
 @RequestMapping("api/performance")
 public class PerformanceController {
     PerformanceService performanceService;
+    MovieService movieService;
 
-    public PerformanceController(PerformanceService performanceService) {
+    public PerformanceController(PerformanceService performanceService, MovieService movieService) {
         this.performanceService = performanceService;
+        this.movieService = movieService;
     }
 
     @GetMapping
@@ -42,4 +46,17 @@ public class PerformanceController {
     public void deletePerformance(@PathVariable int id){
         performanceService.deletePerformance(id);
     }
+
+    @PutMapping("/{performanceId}/movies/{movieId}")
+    public void addMovieToPerformance(
+            @PathVariable int performanceId,
+            @PathVariable int movieId
+    ){
+        Performance performance = performanceService.getPerformanceById(performanceId);
+        Movie movie = movieService.getMovieById(movieId);
+        performance.setMovie(movie);
+        performanceService.addMovieToPerformance(performance);
+
+    }
+
 }
