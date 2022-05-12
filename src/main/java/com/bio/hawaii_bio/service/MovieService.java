@@ -47,4 +47,9 @@ public class MovieService {
         }
         movieRepo.deleteById(movieId);
     }
+
+    public Movie getMovieById(int id){
+        return movieRepo.findById(id).orElseThrow(()->new Client4xxException("No movie with that id"));
+
+    }
 }

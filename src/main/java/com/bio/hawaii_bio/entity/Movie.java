@@ -3,12 +3,17 @@ package com.bio.hawaii_bio.entity;
 
 import com.bio.hawaii_bio.dto.MovieRequest;
 import com.bio.hawaii_bio.dto.MovieResponse;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 
 @Getter
@@ -27,6 +32,9 @@ public class Movie {
     private String description;
     private int ageLimit;
 
+    @JsonIgnore // for at undgå recursive problemet
+    @OneToMany(mappedBy = "movie", fetch = FetchType.EAGER)
+    private Set<Performance> performances = new HashSet<>();
 
     public Movie(MovieRequest body){
         this.category=body.getCategory();
@@ -42,6 +50,10 @@ public class Movie {
         this.length = length;
         this.description = description;
         this.ageLimit = ageLimit;
+    }
+
+    public void addPerformance(Performance performance){
+        performances.add(performance);
     }
 }
 
