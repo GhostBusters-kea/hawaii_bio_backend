@@ -24,12 +24,12 @@ public class MakeTestData implements ApplicationRunner {
 
     MovieRepo movieRepo;
     PerformanceRepo performanceRepo;
-  UserRepo userRepo;
+    UserRepo userRepo;
 
     public MakeTestData(MovieRepo movieRepo, PerformanceRepo performanceRepo,UserRepo userRepo) {
         this.movieRepo = movieRepo;
        this.performanceRepo = performanceRepo;
-      this.userRepo = userRepo
+      this.userRepo = userRepo;
     }
 
     public void makeTestData(){
