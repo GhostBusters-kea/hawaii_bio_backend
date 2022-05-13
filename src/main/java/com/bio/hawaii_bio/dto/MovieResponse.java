@@ -21,6 +21,7 @@ public class MovieResponse {
     private int length;
     private String description;
     private int ageLimit;
+    private String imageUrl;
 
     public MovieResponse(Movie movie, boolean includeAll){
         this.category=movie.getCategory();
@@ -28,6 +29,7 @@ public class MovieResponse {
         this.length= movie.getLength();
         this.ageLimit= movie.getAgeLimit();
         this.description= movie.getDescription();
+        this.imageUrl=movie.getImageUrl();
         if(includeAll){
             this.id= movie.getId();
         }

@@ -33,13 +33,20 @@ public class MakeTestData implements ApplicationRunner {
     }
 
     public void makeTestData(){
-        Movie a = new Movie("Terminator II", Category.ACTION, 120,"Fremtidsrobotfilm", 16);
-        Movie b = new Movie("Rosemary's Baby", Category.HORROR, 124,"Uhyggelig film", 16);
-        Movie c = new Movie("Jurassic Park", Category.SCIENCE_FICTION, 128, "En film om dinosaurs",15);
-        Movie d = new Movie("Harry Potter", Category.ADVENTURE, 110,"En film om en troldmand",8);
-        Movie e = new Movie("Hot Shots!", Category.COMEDY, 118,"En film om jægerpiloter",12);
-        Movie f = new Movie("Apocalypse Now", Category.ACTION,133,"En film om Vietnamkrigen",18);
-        Movie g = new Movie("Pretty Woman", Category.ROMANCE, 113,"En film om kærlighed",12);
+        Movie a = new Movie("Terminator II", Category.ACTION, 120,"Fremtidsrobotfilm",
+                16,"https://m.media-amazon.com/images/M/MV5BMGU2NzRmZjUtOGUxYS00ZjdjLWEwZWItY2NlM2JhNjkxNTFmXkEyXkFqcGdeQXVyNjU0OTQ0OTY@._V1_.jpg");
+        Movie b = new Movie("Rosemary's Baby", Category.HORROR, 124,"Uhyggelig film", 16,
+                "https://m.media-amazon.com/images/M/MV5BMTQ3OTI5NzIzNF5BMl5BanBnXkFtZTgwNTc4NTQ0MTE@._V1_.jpg"
+                );
+        Movie c = new Movie("Jurassic Park", Category.SCIENCE_FICTION, 128, "En film om dinosaurs",15,
+                "https://flxt.tmsimg.com/assets/p14812_p_v11_ba.jpg");
+        Movie d = new Movie("Harry Potter", Category.ADVENTURE, 110,"En film om en troldmand",8,"https://sfanytime-images-prod.secure.footprint.net/COVERM/COVERM_991c1624-cce6-48e5-ae08-ff5f7f4b492d_da.jpg?w=375&fm=pjpg&s=6cf9015604a0d934dd1aa11f8f70c33e");
+        Movie e = new Movie("Hot Shots!", Category.COMEDY, 118,"En film om jægerpiloter",12,
+                "https://m.media-amazon.com/images/M/MV5BNzgxNmI1ODItZWZlYy00ZjE0LWIwYjgtMTk2MzU0MjhkOWIzXkEyXkFqcGdeQXVyMTQxNzMzNDI@._V1_.jpg");
+        Movie f = new Movie("Apocalypse Now", Category.ACTION,133,"En film om Vietnamkrigen",18,
+                "https://m.media-amazon.com/images/M/MV5BMDdhODg0MjYtYzBiOS00ZmI5LWEwZGYtZDEyNDU4MmQyNzFkXkEyXkFqcGdeQXVyNzkwMjQ5NzM@._V1_FMjpg_UX1000_.jpg");
+        Movie g = new Movie("Pretty Woman", Category.ROMANCE, 113,"En film om kærlighed",12,
+                "https://m.media-amazon.com/images/M/MV5BMTMwNTA5ODAxM15BMl5BanBnXkFtZTYwNTQwODU5._V1_.jpg");
         movieRepo.save(a);
         movieRepo.save(b);
         movieRepo.save(c);

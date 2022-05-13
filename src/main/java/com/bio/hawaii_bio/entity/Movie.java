@@ -31,6 +31,7 @@ public class Movie {
     private int length;
     private String description;
     private int ageLimit;
+    private String imageUrl;
 
     @JsonIgnore // for at undgå recursive problemet
     @OneToMany(mappedBy = "movie", fetch = FetchType.EAGER)
@@ -44,12 +45,13 @@ public class Movie {
         this.ageLimit=body.getAgeLimit();
     }
 
-    public Movie(String title, Category category, int length, String description, int ageLimit) {
+    public Movie(String title, Category category, int length, String description, int ageLimit, String imageUrl) {
         this.title = title;
         this.category = category;
         this.length = length;
         this.description = description;
         this.ageLimit = ageLimit;
+        this.imageUrl=imageUrl;
     }
 
     public void addPerformance(Performance performance){

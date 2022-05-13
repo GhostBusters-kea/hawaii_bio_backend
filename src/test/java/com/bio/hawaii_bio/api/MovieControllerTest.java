@@ -43,8 +43,9 @@ class MovieControllerTest {
 
     @BeforeAll // statisk - kører før alle test.
     public static void setUp(@Autowired MovieRepo movieRepo) { // skal autowires sådan pga statisk metode
-        movie1 = movieRepo.save(new Movie("Blood Sport", Category.ACTION,100,"Kampsportsfilm",12));
-        movie2 = movieRepo.save(new Movie("Street Fighter", Category.ACTION,100,"Kampsportsfilm",12));
+        movie1 = movieRepo.save(new Movie("Blood Sport", Category.ACTION,100,"Kampsportsfilm",12,
+                "wevwe"));
+        movie2 = movieRepo.save(new Movie("Street Fighter", Category.ACTION,100,"Kampsportsfilm",12,"wervwerv"));
     }
 
     @Test
