@@ -14,8 +14,7 @@ import java.util.Date;
 @NoArgsConstructor
 public class TicketRequest {
     private int id;
-    private Performance dateOfPerformance;
-    private int amountOfTickets;
+    private Performance performance;
     private String ticketType;
     private double ticketPrice;
 }

@@ -19,8 +19,8 @@ import java.util.stream.Collectors;
 @AllArgsConstructor
 public class TicketResponse {
     private int id;
-    private Performance dateOfPerformance;
-    private int amountOfTickets;
+    private Performance performance;
+
     private String ticketType;
     private double ticketPrice;
 
@@ -32,8 +32,7 @@ public class TicketResponse {
 
     public TicketResponse(Ticket ticket, boolean allFields){
         this.id = ticket.getId();
-        this.dateOfPerformance = ticket.getDateOfPerformance();
-        this.amountOfTickets = ticket.getAmountOfTickets();
+        this.performance = ticket.getPerformance();
         this.ticketType = ticket.getTicketType();
         this.ticketPrice = ticket.getTicketPrice();
         if (allFields){

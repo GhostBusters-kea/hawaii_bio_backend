@@ -25,18 +25,17 @@ public class Ticket {
 
     @ManyToOne
     @JoinColumn(name="performanceid", referencedColumnName = "id")
-    private Performance dateOfPerformance;
+    private Performance performance;
 
-    private int amountOfTickets;
+
     private String TicketType;
     private double ticketPrice;
 
     public Ticket(TicketRequest body){
         this.id = body.getId();
-        this.amountOfTickets = body.getAmountOfTickets();
         this.TicketType = body.getTicketType();
         this.ticketPrice = body.getTicketPrice();
-        this.dateOfPerformance = body.getDateOfPerformance();
+        this.performance = body.getPerformance();
     }
 
     public Ticket() {
