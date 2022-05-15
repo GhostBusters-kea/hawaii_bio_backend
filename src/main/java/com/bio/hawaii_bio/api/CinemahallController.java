@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @CrossOrigin
-@Controller
+@RestController
 @RequestMapping("api/cinemahall")
 public class CinemahallController {
     CinemaHallService cinemaHallService;
