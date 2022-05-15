@@ -20,14 +20,12 @@ public class Reservation {
 
     @CreationTimestamp
     private LocalDateTime reservationDate;
-
-
-    @ManyToOne
-    private Ticket reservedTicket;
-
+    private int amountOfTickets;
     @ManyToOne
     @JoinColumn(name="ticketid", referencedColumnName = "id")
     private Ticket ticket;
+
+
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id", referencedColumnName = "phoneNumber")
