@@ -48,4 +48,10 @@ public class TicketService {
         }
         ticketRepo.deleteById(ticketId);
     }
+    public Ticket getTicketById(int id){
+        return ticketRepo.findById(id).orElseThrow(() -> new Client4xxException("no ticket with that id"));
+    }
+    public void addPerformanceToTicket(Ticket ticket){
+        ticketRepo.save(ticket);
+    }
 }

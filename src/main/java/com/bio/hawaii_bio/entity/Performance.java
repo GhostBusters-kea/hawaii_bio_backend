@@ -1,12 +1,15 @@
 package com.bio.hawaii_bio.entity;
 
 import com.bio.hawaii_bio.dto.PerformanceRequest;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.HashSet;
+import java.util.Set;
 
 @Getter
 @Setter
@@ -18,6 +21,11 @@ public class Performance {
     private int id;
 
     private LocalDateTime date;
+
+    @JsonIgnore // for at undgå recursive problemet
+    @OneToMany(mappedBy = "performance", fetch = FetchType.EAGER)
+    private Set<Ticket> tickets = new HashSet<>();
+
 
     @ManyToOne
     @JoinColumn(name="movieid", referencedColumnName = "id")
@@ -37,6 +45,10 @@ public class Performance {
 
     public void setMovie(Movie movie){
         this.movie=movie;
+    }
+
+    public void addTicket(Ticket ticket){
+        tickets.add(ticket);
     }
 
 }
