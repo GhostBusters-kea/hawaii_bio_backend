@@ -32,6 +32,8 @@ public class CinemaHallService {
         cinemaHall.setId(body.getId());
         cinemaHall.setSeats(body.getSeats());
         cinemaHall.setSeatsReserved(body.getSeatsReserved());
+        cinemaHall.setA1(body.getA1());
+        cinemaHall.setA2(body.getA2());
         return new CinemaHallResponse(cinemaHall);
     }
 }
