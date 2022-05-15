@@ -5,10 +5,7 @@ import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.annotations.CreationTimestamp;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
 import java.time.LocalDateTime;
 
 
@@ -18,6 +15,7 @@ import java.time.LocalDateTime;
 public class Ticket {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
     @CreationTimestamp
@@ -27,16 +25,26 @@ public class Ticket {
     @JoinColumn(name="performanceid", referencedColumnName = "id")
     private Performance performance;
 
-
-    private String TicketType;
-    private double ticketPrice;
-
     public Ticket(TicketRequest body){
         this.id = body.getId();
         this.TicketType = body.getTicketType();
         this.ticketPrice = body.getTicketPrice();
         this.performance = body.getPerformance();
     }
+
+    private String TicketType;
+    private double ticketPrice;
+
+    public Ticket(String ticketType, double ticketPrice, Performance performance){
+        this.TicketType = ticketType;
+        this.ticketPrice = ticketPrice;
+        performance.addTicket(this);
+    }
+    public void setPerformance(Performance performance){
+        this.performance = performance;
+    }
+
+
 
     public Ticket() {
     }
