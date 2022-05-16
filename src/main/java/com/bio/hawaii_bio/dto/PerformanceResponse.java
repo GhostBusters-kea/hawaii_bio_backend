@@ -1,5 +1,6 @@
 package com.bio.hawaii_bio.dto;
 
+import com.bio.hawaii_bio.entity.CinemaHall;
 import com.bio.hawaii_bio.entity.Movie;
 import com.bio.hawaii_bio.entity.Performance;
 import com.fasterxml.jackson.annotation.JsonInclude;
@@ -19,11 +20,13 @@ public class PerformanceResponse {
     private int id;
     private LocalDateTime date;
     private Movie movie;
+    private CinemaHall cinemaHall;
 
     public PerformanceResponse(Performance performance){
         this.id = performance.getId();
         this.date = performance.getDate();
         this.movie = performance.getMovie();
+        this.cinemaHall = performance.getCinemaHall();
     }
 
     public static List<PerformanceResponse> getPerfromanceFromEntities(List<Performance> performances){

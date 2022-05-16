@@ -22,6 +22,7 @@ public class TicketResponse {
     private Performance performance;
 
     private String ticketType;
+    private int amountOfTickets;
     private double ticketPrice;
 
     @JsonFormat(pattern = "dd-MM-yyyy hh:mm:ss",shape = JsonFormat.Shape.STRING)
@@ -34,6 +35,7 @@ public class TicketResponse {
         this.id = ticket.getId();
         this.performance = ticket.getPerformance();
         this.ticketType = ticket.getTicketType();
+        this.amountOfTickets = ticket.getAmountOfTickets();
         this.ticketPrice = ticket.getTicketPrice();
         if (allFields){
             this.created = ticket.getTicketCreatedDate();

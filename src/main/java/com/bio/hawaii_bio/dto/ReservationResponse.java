@@ -24,13 +24,13 @@ public class ReservationResponse {
     private int id;
     @JsonFormat(pattern = "dd-MM-yyyy HH:mm:ss",shape = JsonFormat.Shape.STRING)
     private LocalDateTime reservationDate;
-    private int amountOfTickets;
+
     private TicketResponse ticketResponse;
 
     public ReservationResponse(Reservation reservation){
         this.id=reservation.getId();
         this.reservationDate=reservation.getReservationDate();
-        this.amountOfTickets = reservation.getAmountOfTickets();
+
         this.ticketResponse= new TicketResponse(reservation.getTicket(),false);
     }
 

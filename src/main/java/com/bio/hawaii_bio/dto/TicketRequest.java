@@ -16,5 +16,6 @@ public class TicketRequest {
     private int id;
     private Performance performance;
     private String ticketType;
+    private int amountOfTickets;
     private double ticketPrice;
 }
