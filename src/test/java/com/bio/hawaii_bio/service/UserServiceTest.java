@@ -11,6 +11,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.test.context.ActiveProfiles;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
 import java.util.Locale;
@@ -35,7 +36,7 @@ class UserServiceTest {
 
         userRepo.save(adm);
         userRepo.save(mem);
-        userService = new UserService();
+        userService = new UserService(userRepo);
     }
 
     @Test
@@ -59,7 +60,7 @@ class UserServiceTest {
         UserRequest memTwo = new UserRequest("mem2", "mem2@mail.com", "1234");
         userService.addUser(memTwo);
         List<UserResponse> users = userService.getUsers();
-        assertEquals(5, users.size());
+        assertEquals(3, users.size());
         assertEquals("mem2@mail.com", userService.getUser("mem2").getEmail());
     }
 
@@ -67,14 +68,14 @@ class UserServiceTest {
     void editUser() {
         String newEmail = "adm2@mail.com";
 
-        UserRequest adm2 = new UserRequest( "adm2","a2@mail.com",
+        UserRequest adm = new UserRequest( "adm","adm@mail.com",
                 "1234");
 
-        assertEquals(userService.getUser("adm2").getEmail(), "a2@mail.com");
+        assertEquals(userService.getUser("adm").getEmail(), "adm@mail.com");
 
-        adm2.setEmail(newEmail);
-        UserResponse userToEdit = userService.editUser(adm2, "adm2");
-        assertEquals(userToEdit.getEmail(), newEmail);
+        adm.setEmail(newEmail);
+        UserResponse userToEdit = userService.editUser(adm, "adm");
+        assertEquals(adm.getEmail(), newEmail);
 
     }
 
@@ -86,6 +87,6 @@ class UserServiceTest {
         userService.deleteUser("mem");
 
         assertEquals(1, userService.getUsers().size());
-        assertThrows(Client4xxException.class, () -> userService.getUser("mem"));
+        assertThrows(ResponseStatusException.class, () -> userService.getUser("mem"));
     }
 }

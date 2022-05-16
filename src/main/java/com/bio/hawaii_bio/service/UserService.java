@@ -14,9 +14,11 @@ import org.springframework.web.server.ResponseStatusException;
 import java.util.List;
 
 
-@Service @RequiredArgsConstructor
+@Service
 public class UserService {
     UserRepo userRepo;
+
+    public UserService(UserRepo userRepo){this.userRepo = userRepo;}
 
     public UserResponse addUser(UserRequest body) {
         if(userRepo.existsByUsername(body.getUsername())) {
