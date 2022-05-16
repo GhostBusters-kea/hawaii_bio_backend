@@ -101,18 +101,16 @@ public class MakeTestData implements ApplicationRunner {
 
 
         // User test data
-        User adm = new User(12345678, "adm", "a", "aa", "a@mail.com",
-                "1234", "street", "city", 2000, Role.ADMIN);
-        User emp = new User(23456789, "emp", "b", "bb", "b@mail.com",
-                "1234", "street", "city", 2000, Role.EMPLOYEE);
-        User mem = new User(34567891, "mem", "c", "cc", "c@mail.com",
-                "1234", Role.MEMBER);
-        User cus = new User(45678912, Role.CUSTOMER);
-
+        User adm = new User("adm", "adm@mail.com", "1234");
+        User mem = new User("mem", "user@mail.com", "1234");
+        User jonas = new User("jonas", "jonas@mail.com", "123");
+        jonas.addRole(Role.USER);
+        jonas.addRole(Role.ADMIN);
+        adm.addRole(Role.ADMIN);
+        mem.addRole(Role.USER);
         userRepo.save(adm);
-        userRepo.save(emp);
         userRepo.save(mem);
-        userRepo.save(cus);
+        userRepo.save(jonas);
 
 
 
@@ -120,8 +118,7 @@ public class MakeTestData implements ApplicationRunner {
 
     @Override
     public void run(ApplicationArguments args){
-        movieRepo.deleteAll();
-        makeTestData();
+//        makeTestData();
     }
 
 

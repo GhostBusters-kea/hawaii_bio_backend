@@ -4,57 +4,53 @@ import com.bio.hawaii_bio.dto.UserRequest;
 import com.bio.hawaii_bio.dto.UserResponse;
 import com.bio.hawaii_bio.entity.Role;
 import com.bio.hawaii_bio.entity.User;
-import com.bio.hawaii_bio.error.Client4xxException;
 import com.bio.hawaii_bio.repo.UserRepo;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.stereotype.Service;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
-@Service
+
+@Service @RequiredArgsConstructor
 public class UserService {
     UserRepo userRepo;
 
-    public UserService(UserRepo userRepo){ this.userRepo = userRepo; }
+    public UserResponse addUser(UserRequest body) {
+        if(userRepo.existsByUsername(body.getUsername())) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Username is already taken");
+        }
+        if(userRepo.existsByEmail(body.getEmail())){
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND,"Email is used by another User");
+        }
 
-    public List<UserResponse> getUsers(){
+        User user = new User(body);
+        // All new users are by default given the role USER
+        user.addRole(Role.USER);
+        userRepo.save(user);
+        return new UserResponse(user);
+    }
+
+    public List<UserResponse> getUsers() {
         List<User> users = userRepo.findAll();
-        return users.stream().map(user -> new UserResponse(user, user.getRole())).collect(Collectors.toList());
+        return UserResponse.getUsersFromEntities(users);
     }
 
-    public UserResponse getUser(int phoneNumber){
-        User user = userRepo.findById(phoneNumber).orElseThrow(() -> new Client4xxException("User not found", HttpStatus.NOT_FOUND));
-        return new UserResponse(user, user.getRole());
+    public UserResponse getUser(String id) {
+        User user = userRepo.findById(id).orElseThrow(
+                ()->new ResponseStatusException(HttpStatus.NOT_FOUND,"User with id '"+id+"' not found"));
+        return new UserResponse(user);
     }
 
-    public UserResponse addUser(UserRequest body, Role role){
-        if(userRepo.existsById(body.getPhoneNumber())){
-            throw new Client4xxException(("User already exists"));
-        }
-        if(userRepo.emailExist(body.getEmail())){
-            throw new Client4xxException("An account with that email already exists");
-        }
-        User UserNew = new User(body, role);
-        UserNew = userRepo.save(UserNew);
-
-        return new UserResponse(UserNew.getPhoneNumber(), UserNew.getRole(), UserNew.getCreationTime());
+    public UserResponse editUser(UserRequest body, String id) {
+        User user = userRepo.findById(id).orElseThrow();
+        return new UserResponse(userRepo.save(user));
     }
 
-    public UserResponse editUser(UserRequest body, int phoneNumber){
-        if(!(userRepo.existsById(body.getPhoneNumber()))){
-            throw new Client4xxException("No Such User exists");
-        }
-        User UserToEdit = new User(body, body.getRole());
-        UserToEdit.setPhoneNumber(phoneNumber);
-        userRepo.save(UserToEdit);
-        return new UserResponse(UserToEdit, UserToEdit.getRole());
-    }
-
-    public void deleteUser(int phoneNumber){
-        if(!(userRepo.existsById(phoneNumber))){
-            throw new Client4xxException("No Such User exists");
-        }
-        userRepo.deleteById(phoneNumber);
+    public void deleteUser(String id) {
+        User User = userRepo.findById(id).orElseThrow();
+        userRepo.delete(User);
     }
 }

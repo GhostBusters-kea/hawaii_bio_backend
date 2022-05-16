@@ -41,10 +41,10 @@ class UserControllerTest {
 
     @BeforeAll
     public static void setUp(@Autowired UserRepo userRepo) {
-        user1 = userRepo.save(new User(34567891, "mem", "c", "cc", "c@mail.com",
-                "1234", Role.MEMBER));
-        user2 = userRepo.save(new User(23456789, "emp", "b", "bb", "b@mail.com",
-                "1234", "street", "city", 2000, Role.EMPLOYEE));
+        user1 = new User("adm", "adm@mail.com", "1234");
+        user2 = new User("mem", "user@mail.com", "1234");
+        user1.addRole(Role.ADMIN);
+        user2.addRole(Role.USER);
     }
 
     @Test
@@ -64,12 +64,12 @@ class UserControllerTest {
     @Test
     void getMember() throws Exception {
         mockMvc.perform(MockMvcRequestBuilders
-                .get("/api/users/" + user1.getPhoneNumber())
+                .get("/api/users/" + user1.getUsername())
                 .accept(MediaType.APPLICATION_JSON))
                 .andDo(print())
                 .andExpect(status().isOk())
-                .andExpect(MockMvcResultMatchers.jsonPath("$.phoneNumber").value(user1.getPhoneNumber()))
-                .andExpect(MockMvcResultMatchers.jsonPath("$.firstName").value(user1.getFirstName()));
+                .andExpect(MockMvcResultMatchers.jsonPath("$.phoneNumber").value(user1.getUsername()))
+                .andExpect(MockMvcResultMatchers.jsonPath("$.email").value(user1.getEmail()));
 
     }
 

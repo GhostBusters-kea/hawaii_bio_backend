@@ -6,57 +6,36 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.hibernate.annotations.CreationTimestamp;
-import org.hibernate.annotations.UpdateTimestamp;
 import javax.persistence.*;
-import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 
-@Getter @Setter @NoArgsConstructor
+@Getter
+@Setter
+@NoArgsConstructor
 @Entity
 public class User implements UserWithPassword {
 
     @Id
-    @Column(nullable = false, unique = true, length = 12)
-    private int phoneNumber;
-
-    @Column(unique = true, length = 25)
+    @Column(nullable = false, length = 50, unique = true)
     private String username;
 
-    @Column(length = 25)
-    private String firstName;
-
-    @Column(length = 25)
-    private String lastName;
-
-    @Column(unique = true, length = 75)
+    @Column(nullable = false, length = 50, unique = true)
     private String email;
 
-    @Column(length = 72)
+    @Column(nullable = false, length = 72)
     private String password;
 
-    @Column(length = 75)
-    private String address;
-
-    @Column(length = 25)
-    private String city;
-
-    @Column(length = 4)
-    private int zip;
-
-    private boolean isAdmin;
+    private boolean enabled;
 
     @Enumerated(EnumType.STRING)
-    @Column(columnDefinition = "ENUM('CUSTOMER','MEMBER', 'EMPLOYEE', 'ADMIN')")
-    private Role role;
-
-    @CreationTimestamp
-    LocalDateTime CreationTime;
-
-    @UpdateTimestamp
-    LocalDateTime edited;
+    @Column(columnDefinition = "ENUM('USER','ADMIN')")
+    @ElementCollection(fetch = FetchType.EAGER)
+    @CollectionTable(name="security_role")
+    List<Role> roles = new ArrayList<>();
 
     @JsonIgnore
     @OneToMany(
@@ -66,75 +45,9 @@ public class User implements UserWithPassword {
     )
     private Set<Reservation> reservations = new HashSet<>();
 
-    // Employee and Admin
-    public User(int phoneNumber, String username, String firstName, String lastName, String email, String password,
-                String address, String city, int zip, Role role) {
-        this.phoneNumber = phoneNumber;
-        this.username = username;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.email = email;
-        this.password = pwEncoder.encode(password);
-        this.address = address;
-        this.city = city;
-        this.zip = zip;
-        this.role = role;
-        if (role == Role.ADMIN){
-            this.isAdmin = true;
-        }
-    }
-
-    // Member
-    public User(int phoneNumber, String username, String firstName, String lastName, String email, String password, Role role) {
-        this.phoneNumber = phoneNumber;
-        this.username = username;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.email = email;
-        this.password = pwEncoder.encode(password);
-        this.role = role;
-    }
-
-    // Customer
-    public User(int phoneNumber, Role role) {
-        this.phoneNumber = phoneNumber;
-        this.role = role;
-    }
-
-    public User(UserRequest body, Role role) {
-        this.role = role;
-        switch (role) {
-            case CUSTOMER:
-                this.phoneNumber = body.getPhoneNumber();
-                this.isAdmin = false;
-            case MEMBER:
-                this.phoneNumber = body.getPhoneNumber();
-                this.username = body.getUsername();
-                this.firstName = body.getFirstName();
-                this.lastName = body.getLastName();
-                this.email = body.getEmail();
-                this.isAdmin = false;
-            case EMPLOYEE:
-                this.phoneNumber = body.getPhoneNumber();
-                this.username = body.getUsername();
-                this.firstName = body.getFirstName();
-                this.lastName = body.getLastName();
-                this.email = body.getEmail();
-                this.address = body.getAddress();
-                this.city = body.getCity();
-                this.zip = body.getZip();
-                this.isAdmin = false;
-            case ADMIN:
-                this.phoneNumber = body.getPhoneNumber();
-                this.username = body.getUsername();
-                this.firstName = body.getFirstName();
-                this.lastName = body.getLastName();
-                this.email = body.getEmail();
-                this.address = body.getAddress();
-                this.city = body.getCity();
-                this.zip = body.getZip();
-                this.isAdmin = true;
-        }
+    @Override
+    public void addRole(Role role) {
+        this.roles.add(role);
     }
 
     @Override
@@ -142,8 +55,20 @@ public class User implements UserWithPassword {
         this.password = pwEncoder.encode(password);
     }
 
-    @Override
-    public Role getRole() {
-        return role;
+
+    public User(String username, String email, String password) {
+        this.username = username;
+        this.email = email;
+        this.password = pwEncoder.encode(password);;
+        this.enabled = true;
     }
+
+    public User(UserRequest body) {
+        this.username = body.getUsername();
+        this.email = body.getEmail();
+        this.password = pwEncoder.encode(body.getPassword());
+        this.enabled = true;
+    }
+
+    public boolean isEnabled() { return this.enabled; }
 }
