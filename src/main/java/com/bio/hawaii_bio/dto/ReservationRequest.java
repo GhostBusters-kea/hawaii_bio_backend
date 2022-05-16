@@ -15,6 +15,6 @@ import java.time.LocalDateTime;
 public class ReservationRequest {
     private int id;
     private LocalDateTime reservationDate;
-    private int amountOfTickets;
+
     private Ticket ticket;
 }

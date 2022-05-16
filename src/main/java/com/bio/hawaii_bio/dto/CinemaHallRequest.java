@@ -11,8 +11,6 @@ import lombok.Setter;
 @AllArgsConstructor
 public class CinemaHallRequest {
     private int id;
-    private int seats;
-    private int seatsReserved;
     private int a1;
     private int a2;
 }

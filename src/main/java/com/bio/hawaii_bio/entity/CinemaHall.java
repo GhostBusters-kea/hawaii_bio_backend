@@ -17,10 +17,6 @@ public class CinemaHall {
     @Id
     private int id;
 
-    private int seats;
-
-    private int seatsReserved;
-
     @Column(nullable = false, columnDefinition = "TINYINT(1)")
     private int a1;
 
@@ -29,8 +25,6 @@ public class CinemaHall {
 
     public CinemaHall(CinemaHallRequest body){
         this.id = body.getId();
-        this.seats = body.getSeats();
-        this.seatsReserved = body.getSeatsReserved();
         this.a1 = body.getA1();
         this.a2 = body.getA2();
     }

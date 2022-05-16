@@ -36,8 +36,6 @@ public class CinemaHallService {
     public CinemaHallResponse editCinemaHall(CinemaHallRequest body, int cinemaHallId){
         CinemaHall cinemaHall = cinemaHallRepo.findById(cinemaHallId).orElseThrow(() -> new Client4xxException("CinemaHall with that id"));
         cinemaHall.setId(body.getId());
-        cinemaHall.setSeats(body.getSeats());
-        cinemaHall.setSeatsReserved(body.getSeatsReserved());
         cinemaHall.setA1(body.getA1());
         cinemaHall.setA2(body.getA2());
         cinemaHallRepo.save(cinemaHall);
