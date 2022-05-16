@@ -28,6 +28,11 @@ public class CinemahallController {
         return cinemaHallService.getCinemaHall(id);
     }
 
+    @PostMapping
+    public void addCinemahall(@RequestBody CinemaHallRequest body){
+        cinemaHallService.addCinemaHall(body);
+    }
+
     @PutMapping("/{id}")
     public CinemaHallResponse editCinemaHall(@RequestBody CinemaHallRequest body, @PathVariable int id){
         return cinemaHallService.editCinemaHall(body, id);

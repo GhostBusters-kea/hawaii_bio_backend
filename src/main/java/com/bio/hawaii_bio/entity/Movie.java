@@ -38,6 +38,7 @@ public class Movie {
     private Set<Performance> performances = new HashSet<>();
 
     public Movie(MovieRequest body){
+        this.id = body.getId();
         this.category=body.getCategory();
         this.title=body.getTitle();
         this.length=body.getLength();
