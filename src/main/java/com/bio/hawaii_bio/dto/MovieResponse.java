@@ -24,6 +24,7 @@ public class MovieResponse {
     private String imageUrl;
 
     public MovieResponse(Movie movie, boolean includeAll){
+        this.id = movie.getId();
         this.category=movie.getCategory();
         this.title= movie.getTitle();
         this.length= movie.getLength();

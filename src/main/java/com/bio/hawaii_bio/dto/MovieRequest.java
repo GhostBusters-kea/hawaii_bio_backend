@@ -11,6 +11,7 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 public class MovieRequest {
+    private int id;
     private Category category;
     private String title;
     private int length;
