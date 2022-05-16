@@ -26,6 +26,10 @@ public class Performance {
     @OneToMany(mappedBy = "performance", fetch = FetchType.EAGER)
     private Set<Ticket> tickets = new HashSet<>();
 
+    @ManyToOne
+    @JoinColumn(name = "cinemahallid", referencedColumnName = "id")
+    private CinemaHall cinemaHall;
+
 
     @ManyToOne
     @JoinColumn(name="movieid", referencedColumnName = "id")
