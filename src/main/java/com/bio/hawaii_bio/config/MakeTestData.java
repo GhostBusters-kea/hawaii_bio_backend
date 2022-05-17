@@ -74,7 +74,7 @@ public class MakeTestData implements ApplicationRunner {
         performanceRepo.save(p8);
         performanceRepo.save(p9);
 
-        /*
+
         p.setMovie(a);
         p1.setMovie(a);
         p2.setMovie(a);
@@ -90,7 +90,7 @@ public class MakeTestData implements ApplicationRunner {
         b.addPerformance(p4);
         b.addPerformance(p5);
 
-         */
+
 
 
 
@@ -119,7 +119,7 @@ public class MakeTestData implements ApplicationRunner {
 
     @Override
     public void run(ApplicationArguments args){
-//        makeTestData();
+        //makeTestData();
     }
 
 
