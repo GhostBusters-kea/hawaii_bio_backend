@@ -2,42 +2,44 @@ package com.bio.hawaii_bio.api;
 
 import com.bio.hawaii_bio.dto.UserRequest;
 import com.bio.hawaii_bio.dto.UserResponse;
-import com.bio.hawaii_bio.entity.Role;
 import com.bio.hawaii_bio.service.UserService;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
-@RequestMapping("api/users")
+@RequestMapping("api/persons")
 public class UserController {
+
     UserService userService;
 
-    public UserController(UserService userService){
-        this.userService = userService;
-    }
-
-    @GetMapping
-    public List<UserResponse> getMembers(){return userService.getUsers();}
-
-    @GetMapping("/{phoneNumber}")
-    public UserResponse getMember(@PathVariable int phoneNumber){
-        return userService.getUser(phoneNumber);
+    public UserController(UserService personService) {
+        this.userService = personService;
     }
 
     @PostMapping
-    public UserResponse addMember(@RequestBody UserRequest body, Role role){
-        return userService.addUser(body, role);
+    public ResponseEntity<UserResponse> addPerson(@RequestBody @Valid UserRequest body) {
+        return ResponseEntity.ok(userService.addUser(body));
     }
 
-    @PutMapping("/{phoneNumber}")
-    public UserResponse editMember(@RequestBody UserRequest body, @PathVariable int phoneNumber){
-
-        return userService.editUser(body, phoneNumber);
+    @GetMapping
+    public List<UserResponse> getPersons(){
+        return userService.getUsers();
     }
 
-    @DeleteMapping("/{phoneNumber}")
-    public void deleteMember(@PathVariable int phoneNumber){
-        userService.deleteUser(phoneNumber);
+    @GetMapping("/{username}")
+    public UserResponse getPerson(@PathVariable String username)  {
+        return userService.getUser(username);
+    }
+
+    @PutMapping("/{username}")
+    public UserResponse editPerson(@RequestBody UserRequest body, @PathVariable String username){
+        return userService.editUser(body, username);
+    }
+
+    @DeleteMapping("/{username}")
+    public void deletePerson(@PathVariable String username){
+        userService.deleteUser(username);
     }
 }

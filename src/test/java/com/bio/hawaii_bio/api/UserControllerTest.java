@@ -39,39 +39,42 @@ class UserControllerTest {
     private static User user1;
     private static User user2;
 
-    @BeforeAll
-    public static void setUp(@Autowired UserRepo userRepo) {
-        user1 = userRepo.save(new User(34567891, "mem", "c", "cc", "c@mail.com",
-                "1234", Role.MEMBER));
-        user2 = userRepo.save(new User(23456789, "emp", "b", "bb", "b@mail.com",
-                "1234", "street", "city", 2000, Role.EMPLOYEE));
-    }
-
-    @Test
-    void getMembers() throws Exception {
-        mockMvc.perform(MockMvcRequestBuilders
-                    .get("/api/users")
-                    .accept(MediaType.APPLICATION_JSON))
-                .andDo(print())
-                .andExpect(status().isOk())
-                .andExpect(MockMvcResultMatchers.content().contentType(MediaType.APPLICATION_JSON))
-                .andExpect(MockMvcResultMatchers.jsonPath("$[0]").exists())
-                .andExpect(MockMvcResultMatchers.jsonPath("$.length()").value(2))
-                .andExpect(MockMvcResultMatchers.content().string(containsString("cc")))
-                .andExpect(MockMvcResultMatchers.content().string(containsString("bb")));
-    }
-
-    @Test
-    void getMember() throws Exception {
-        mockMvc.perform(MockMvcRequestBuilders
-                .get("/api/users/" + user1.getPhoneNumber())
-                .accept(MediaType.APPLICATION_JSON))
-                .andDo(print())
-                .andExpect(status().isOk())
-                .andExpect(MockMvcResultMatchers.jsonPath("$.phoneNumber").value(user1.getPhoneNumber()))
-                .andExpect(MockMvcResultMatchers.jsonPath("$.firstName").value(user1.getFirstName()));
-
-    }
+//    @BeforeAll
+//    public static void setUp(@Autowired UserRepo userRepo) {
+//        userRepo.deleteAll();
+//        user1 = new User("adm", "adm@mail.com", "1234");
+//        user2 = new User("mem", "user@mail.com", "1234");
+//        user1.addRole(Role.ADMIN);
+//        user2.addRole(Role.USER);
+//        userRepo.save(user1);
+//        userRepo.save(user2);
+//    }
+//
+//    @Test
+//    void getUsers() throws Exception {
+//        mockMvc.perform(MockMvcRequestBuilders
+//                    .get("/api/users")
+//                    .accept(MediaType.APPLICATION_JSON))
+//                .andDo(print())
+//                .andExpect(status().isOk())
+//                .andExpect(MockMvcResultMatchers.content().contentType(MediaType.APPLICATION_JSON))
+//                .andExpect(MockMvcResultMatchers.jsonPath("$[0]").exists())
+//                .andExpect(MockMvcResultMatchers.jsonPath("$.length()").value(2))
+//                .andExpect(MockMvcResultMatchers.content().string(containsString("cc")))
+//                .andExpect(MockMvcResultMatchers.content().string(containsString("bb")));
+//    }
+//
+//    @Test
+//    void getUser() throws Exception {
+//        mockMvc.perform(MockMvcRequestBuilders
+//                .get("/api/users/" + user1.getUsername())
+//                .accept(MediaType.APPLICATION_JSON))
+//                .andDo(print())
+//                .andExpect(status().isOk())
+//                .andExpect(MockMvcResultMatchers.jsonPath("$.phoneNumber").value(user1.getUsername()))
+//                .andExpect(MockMvcResultMatchers.jsonPath("$.email").value(user1.getEmail()));
+//
+//    }
 
 //    @Test
 //    void addMember() throws Exception {

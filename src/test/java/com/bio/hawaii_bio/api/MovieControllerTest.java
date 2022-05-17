@@ -41,27 +41,27 @@ class MovieControllerTest {
     private static Movie movie1;
     private static Movie movie2;
 
-    @BeforeAll // statisk - kører før alle test.
-    public static void setUp(@Autowired MovieRepo movieRepo) { // skal autowires sådan pga statisk metode
-        movie1 = movieRepo.save(new Movie("Blood Sport", Category.ACTION,100,"Kampsportsfilm",12,
-                "wevwe"));
-        movie2 = movieRepo.save(new Movie("Street Fighter", Category.ACTION,100,"Kampsportsfilm",12,"wervwerv"));
-    }
-
-    @Test
-    void getMovies() {
-    }
-
-    @Test
-    void testGetMovie() throws Exception{
-        mockMvc.perform(MockMvcRequestBuilders
-                .get("/api/movies/" + movie1.getId())
-                .accept(MediaType.APPLICATION_JSON)) // tre første linjer laver request op mod server
-                .andDo(print()) // respons retur fra denne linje (builderpattern)
-                .andExpect(status().isOk())
-                .andExpect(MockMvcResultMatchers.jsonPath("$.id").value(movie1.getId()))
-                .andExpect(MockMvcResultMatchers.jsonPath("$.title").value(movie1.getTitle()));
-    }
+//    @BeforeAll // statisk - kører før alle test.
+//    public static void setUp(@Autowired MovieRepo movieRepo) { // skal autowires sådan pga statisk metode
+//        movie1 = movieRepo.save(new Movie("Blood Sport", Category.ACTION,100,"Kampsportsfilm",12,
+//                "wevwe"));
+//        movie2 = movieRepo.save(new Movie("Street Fighter", Category.ACTION,100,"Kampsportsfilm",12,"wervwerv"));
+//    }
+//
+//    @Test
+//    void getMovies() {
+//    }
+//
+//    @Test
+//    void testGetMovie() throws Exception{
+//        mockMvc.perform(MockMvcRequestBuilders
+//                .get("/api/movies/" + movie1.getId())
+//                .accept(MediaType.APPLICATION_JSON)) // tre første linjer laver request op mod server
+//                .andDo(print()) // respons retur fra denne linje (builderpattern)
+//                .andExpect(status().isOk())
+//                .andExpect(MockMvcResultMatchers.jsonPath("$.id").value(movie1.getId()))
+//                .andExpect(MockMvcResultMatchers.jsonPath("$.title").value(movie1.getTitle()));
+//    }
 
 
     @Test
