@@ -1,6 +1,5 @@
 package com.bio.hawaii_bio.dto;
 
-import com.bio.hawaii_bio.entity.Seat;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -10,7 +9,7 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class CinemaHallRequest {
+public class SeatRequest {
     private int id;
-    private Seat seat;
+    private int isReserved;
 }
