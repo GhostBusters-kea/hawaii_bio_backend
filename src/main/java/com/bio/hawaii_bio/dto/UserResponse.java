@@ -19,12 +19,12 @@ public class UserResponse {
 
     public UserResponse(User user) {
         this.username = user.getUsername();
-        this.roleNames = user.getRoles().stream().map(role -> role.toString()).collect(Collectors.toList());
+        this.roleNames = user.getRoles().stream().map(Enum::toString).collect(Collectors.toList());
         this.email = user.getEmail();
     }
 
-    public static List<UserResponse> getUsersFromEntities(List<User> persons) {
-        return persons.stream().map(UserResponse::new).collect(Collectors.toList());
+    public static List<UserResponse> getUsersFromEntities(List<User> users) {
+        return users.stream().map(UserResponse::new).collect(Collectors.toList());
     }
 }
 
