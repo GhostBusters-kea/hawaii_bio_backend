@@ -41,8 +41,7 @@ public class User implements UserWithPassword {
     @OneToMany(
             mappedBy = "user",
             cascade = CascadeType.ALL,
-            orphanRemoval = true
-    )
+            orphanRemoval = true)
     private Set<Reservation> reservations = new HashSet<>();
 
     @Override

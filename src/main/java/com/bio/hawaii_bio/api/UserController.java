@@ -9,6 +9,7 @@ import javax.validation.Valid;
 import java.util.List;
 
 @RestController
+@CrossOrigin
 @RequestMapping("api/persons")
 public class UserController {
 
