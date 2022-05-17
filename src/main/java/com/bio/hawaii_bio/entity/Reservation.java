@@ -20,7 +20,6 @@ public class Reservation {
 
     @CreationTimestamp
     private LocalDateTime reservationDate;
-    private int amountOfTickets;
 
     @ManyToOne
     @JoinColumn(name="ticketid", referencedColumnName = "id")

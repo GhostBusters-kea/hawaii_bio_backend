@@ -2,6 +2,7 @@ package com.bio.hawaii_bio.dto;
 
 import com.bio.hawaii_bio.entity.CinemaHall;
 import com.bio.hawaii_bio.entity.Movie;
+import com.bio.hawaii_bio.entity.Seat;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -16,17 +17,12 @@ import java.util.stream.Collectors;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class CinemaHallResponse {
     private int id;
-    private int seats;
-    private int seatsReserved;
-    private int a1;
-    private int a2;
+
+    private Seat seat;
 
     public CinemaHallResponse(CinemaHall cinemaHall){
         this.id = cinemaHall.getId();
-        this.seats = cinemaHall.getSeats();
-        this.seatsReserved = cinemaHall.getSeatsReserved();
-        this.a1 = cinemaHall.getA1();
-        this.a2 = cinemaHall.getA2();
+        this.seat = cinemaHall.getSeat();
 
     }
 

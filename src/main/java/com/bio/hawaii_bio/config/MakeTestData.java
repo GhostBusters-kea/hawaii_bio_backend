@@ -1,14 +1,8 @@
 package com.bio.hawaii_bio.config;
 
-import com.bio.hawaii_bio.entity.Category;
-import com.bio.hawaii_bio.entity.Movie;
-import com.bio.hawaii_bio.entity.Performance;
+import com.bio.hawaii_bio.entity.*;
+import com.bio.hawaii_bio.repo.*;
 import com.bio.hawaii_bio.repo.MovieRepo;
-import com.bio.hawaii_bio.repo.PerformanceRepo;
-import com.bio.hawaii_bio.entity.Role;
-import com.bio.hawaii_bio.entity.User;
-import com.bio.hawaii_bio.repo.MovieRepo;
-import com.bio.hawaii_bio.repo.UserRepo;
 import com.bio.hawaii_bio.service.MovieService;
 import com.bio.hawaii_bio.service.UserService;
 import org.springframework.boot.ApplicationArguments;
@@ -25,11 +19,13 @@ public class MakeTestData implements ApplicationRunner {
     MovieRepo movieRepo;
     PerformanceRepo performanceRepo;
     UserRepo userRepo;
+    SeatRepo seatRepo;
 
-    public MakeTestData(MovieRepo movieRepo, PerformanceRepo performanceRepo,UserRepo userRepo) {
+    public MakeTestData(MovieRepo movieRepo, PerformanceRepo performanceRepo,UserRepo userRepo, SeatRepo seatRepo) {
         this.movieRepo = movieRepo;
        this.performanceRepo = performanceRepo;
       this.userRepo = userRepo;
+      this.seatRepo = seatRepo;
     }
 
     public void makeTestData(){
@@ -113,6 +109,11 @@ public class MakeTestData implements ApplicationRunner {
         userRepo.save(jonas);
 
 
+        //Seat test data
+        for(int i = 1; i<=60; i++){
+            Seat seat = new Seat(i);
+            seatRepo.save(seat);
+        }
 
     }
 
