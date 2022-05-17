@@ -15,6 +15,8 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.web.servlet.config.annotation.CorsRegistry;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 import javax.servlet.http.HttpServletResponse;
 
@@ -66,9 +68,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
             .and()
             .authorizeRequests()
             .antMatchers("/api/auth/**").permitAll()
-            .antMatchers("/error").permitAll() //Without this you are not allowed to see security related error responses
-            .antMatchers(HttpMethod.GET, "/api/message/all").permitAll()
-            .antMatchers(HttpMethod.GET, "/index.html").permitAll()
+            .antMatchers("/error").permitAll()
+            .antMatchers(HttpMethod.GET, "/api/").permitAll()
+            .antMatchers(HttpMethod.GET, "/api/movies/**").permitAll()
+            .antMatchers(HttpMethod.GET, "/api/performance/**").permitAll()
             // All other endpoints are private
             .anyRequest().authenticated();
             //.anyRequest().permitAll();  //Disable Security
