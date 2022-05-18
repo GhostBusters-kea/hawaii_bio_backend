@@ -22,16 +22,18 @@ public class Performance {
 
     private LocalDateTime date;
 
+
     @JsonIgnore // for at undgå recursive problemet
     @OneToMany(mappedBy = "performance", fetch = FetchType.EAGER)
     private Set<Ticket> tickets = new HashSet<>();
 
-    @ManyToOne
+
+    @ManyToOne()
     @JoinColumn(name = "cinemahallid", referencedColumnName = "id")
     private CinemaHall cinemaHall;
 
 
-    @ManyToOne
+    @ManyToOne()
     @JoinColumn(name="movieid", referencedColumnName = "id")
     private Movie movie;
 
@@ -51,6 +53,7 @@ public class Performance {
     public void setMovie(Movie movie){
         this.movie=movie;
     }
+
 
     public void addTicket(Ticket ticket){
         tickets.add(ticket);

@@ -32,15 +32,16 @@ public class PerformanceService {
         return PerformanceResponse.getPerfromanceFromEntities(performances);
     }
 
-    public PerformanceResponse addNewPerformance(PerformanceRequest body){
-        Performance performance = performanceRepo.save(new Performance(body));
-        return new PerformanceResponse(performance);
+    public void addNewPerformance(PerformanceRequest body){
+        performanceRepo.save(new Performance(body));
     }
 
     public PerformanceResponse editPerformance(PerformanceRequest body, int performanceId){
         Performance performance = performanceRepo.findById(performanceId).orElseThrow(() -> new Client4xxException("no performance"));
         performance.setDate(body.getDate());
         performance.setMovie(body.getMovie());
+        performance.setCinemaHall(body.getCinemaHall());
+        performanceRepo.save(performance);
         return new PerformanceResponse(performance);
     }
 
