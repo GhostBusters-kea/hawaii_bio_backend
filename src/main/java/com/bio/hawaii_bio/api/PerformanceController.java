@@ -33,8 +33,8 @@ public class PerformanceController {
     }
 
     @PostMapping
-    public PerformanceResponse addNewPerformance(@RequestBody PerformanceRequest body){
-        return performanceService.addNewPerformance(body);
+    public void addNewPerformance(@RequestBody PerformanceRequest body){
+        performanceService.addNewPerformance(body);
     }
 
     @PutMapping("/{id}")
