@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.time.LocalDateTime;
+import java.util.Set;
 
 @Getter
 @Setter
@@ -15,6 +16,5 @@ import java.time.LocalDateTime;
 public class ReservationRequest {
     private int id;
     private LocalDateTime reservationDate;
-
-    private Ticket ticket;
+    private Set<Ticket> tickets;
 }

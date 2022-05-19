@@ -26,12 +26,12 @@ public class TicketService {
 
     public TicketResponse getTicket(int id){
         Ticket ticket = ticketRepo.findById(id).orElseThrow(()-> new Client4xxException("No performance with that id"));
-        return new TicketResponse(ticket, false);
+        return new TicketResponse(ticket);
     }
 
     public TicketResponse addNewTicket(TicketRequest body){
         Ticket ticket = ticketRepo.save(new Ticket(body));
-        return new TicketResponse(ticket, false);
+        return new TicketResponse(ticket);
     }
 
     public TicketResponse editTicket(TicketRequest body, int ticketId){
@@ -39,7 +39,7 @@ public class TicketService {
         ticket.setPerformance(body.getPerformance());
         ticket.setTicketType(body.getTicketType());
         ticket.setTicketPrice(body.getTicketPrice());
-        return new TicketResponse(ticket, false);
+        return new TicketResponse(ticket);
     }
 
     public void deleteTicket (int ticketId){

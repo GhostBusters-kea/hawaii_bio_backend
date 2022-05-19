@@ -3,6 +3,8 @@ package com.bio.hawaii_bio.dto;
 
 import com.bio.hawaii_bio.entity.Performance;
 import com.bio.hawaii_bio.entity.Reservation;
+import com.bio.hawaii_bio.entity.Ticket;
+import com.bio.hawaii_bio.entity.User;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Getter;
 import lombok.Setter;
@@ -18,20 +20,17 @@ import java.util.stream.Collectors;
 
 public class ReservationResponse {
 
-
-
-
     private int id;
     @JsonFormat(pattern = "dd-MM-yyyy HH:mm:ss",shape = JsonFormat.Shape.STRING)
     private LocalDateTime reservationDate;
-
-    private TicketResponse ticketResponse;
+    private List<Integer> ticketIds;
+    private String username;
 
     public ReservationResponse(Reservation reservation){
         this.id=reservation.getId();
         this.reservationDate=reservation.getReservationDate();
-
-        this.ticketResponse= new TicketResponse(reservation.getTicket(),false);
+        this.username = reservation.getUser().getUsername();
+        this.ticketIds = reservation.getTickets().stream().map(ticket -> ticket.getId()).collect(Collectors.toList());
     }
 
     public static List<ReservationResponse> getReservationFromEntities(List<Reservation> reservations){
