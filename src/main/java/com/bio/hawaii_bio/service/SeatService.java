@@ -34,7 +34,6 @@ public class SeatService {
     public SeatResponse editSeat(SeatRequest body, int seatId){
         Seat seat = seatRepo.findById(seatId).orElseThrow(() -> new Client4xxException("no id"));
         seat.setId(body.getId());
-        seat.setIsReserved(body.getIsReserved());
         seatRepo.save(seat);
         return new SeatResponse(seat);
     }
