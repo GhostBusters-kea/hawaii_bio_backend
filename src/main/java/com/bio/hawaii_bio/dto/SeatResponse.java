@@ -17,6 +17,8 @@ import java.util.stream.Collectors;
 public class SeatResponse {
     private int id;
 
+    private String seatname;
+
     public SeatResponse(Seat seat){
         this.id = seat.getId();
     }

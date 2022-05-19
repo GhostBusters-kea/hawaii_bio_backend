@@ -12,6 +12,7 @@ import lombok.ToString;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 @Getter
@@ -23,14 +24,15 @@ public class ReservationResponse {
     private int id;
     @JsonFormat(pattern = "dd-MM-yyyy HH:mm:ss",shape = JsonFormat.Shape.STRING)
     private LocalDateTime reservationDate;
-    private List<Integer> ticketIds;
+    private Set<Ticket> tickets;
     private String username;
 
     public ReservationResponse(Reservation reservation){
         this.id=reservation.getId();
         this.reservationDate=reservation.getReservationDate();
-        this.username = reservation.getUser().getUsername();
-        this.ticketIds = reservation.getTickets().stream().map(ticket -> ticket.getId()).collect(Collectors.toList());
+        //this.username = reservation.getUser().getUsername();
+        //this.ticketIds = reservation.getTickets().stream().map(ticket -> ticket.getId()).collect(Collectors.toList());
+        this.tickets = reservation.getTickets();
     }
 
     public static List<ReservationResponse> getReservationFromEntities(List<Reservation> reservations){

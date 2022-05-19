@@ -1,6 +1,7 @@
 package com.bio.hawaii_bio.dto;
 
 import com.bio.hawaii_bio.entity.Performance;
+import com.bio.hawaii_bio.entity.Reservation;
 import com.bio.hawaii_bio.entity.Ticket;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.AllArgsConstructor;
@@ -20,9 +21,10 @@ import java.util.stream.Collectors;
 public class TicketResponse {
     private int id;
     private Performance performance;
-    private String ticketType;
     private double ticketPrice;
-    private int hall_id;
+    //private int hall_id;
+    private int seatname;
+    private Reservation reservation;
 
     @JsonFormat(pattern = "dd-MM-yyyy hh:mm:ss",shape = JsonFormat.Shape.STRING)
     LocalDateTime created;
@@ -33,10 +35,11 @@ public class TicketResponse {
     public TicketResponse(Ticket ticket){
         this.id = ticket.getId();
         this.performance = ticket.getPerformance();
-        this.hall_id = ticket.getPerformance().getCinemaHall().getId();
-        this.ticketType = ticket.getTicketType();
+        //this.hall_id = ticket.getPerformance().getCinemaHall().getId();
         this.ticketPrice = ticket.getTicketPrice();
         this.created = ticket.getTicketCreatedDate();
+        this.seatname = ticket.getSeatname();
+        this.reservation = ticket.getReservation();
     }
 
     public static List<TicketResponse> getTicketFromEntities(List<Ticket> tickets){
