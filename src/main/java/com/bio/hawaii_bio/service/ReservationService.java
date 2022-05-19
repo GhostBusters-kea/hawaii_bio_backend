@@ -34,7 +34,7 @@ public class ReservationService {
     public ReservationResponse editReservation(ReservationRequest body, int reservationId){
         Reservation reservation = reservationRepo.findById(reservationId).orElseThrow(() -> new Client4xxException("no reservation with that id"));
         reservation.setReservationDate(body.getReservationDate());
-        reservation.setTicket(body.getTicket());
+        reservation.setTickets(body.getTickets());
         return new ReservationResponse(reservation);
     }
     public void deleteReservation(int reservationId){

@@ -25,18 +25,19 @@ public class Ticket {
     @JoinColumn(name="performanceid", referencedColumnName = "id")
     private Performance performance;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "reservation_id", referencedColumnName = "id")
+    private Reservation reservation;
 
 
     public Ticket(TicketRequest body){
         this.id = body.getId();
         this.TicketType = body.getTicketType();
-        this.amountOfTickets = body.getAmountOfTickets();
         this.ticketPrice = body.getTicketPrice();
         this.performance = body.getPerformance();
     }
 
     private String TicketType;
-    private int amountOfTickets;
     private double ticketPrice;
 
     public Ticket(String ticketType, double ticketPrice, Performance performance){

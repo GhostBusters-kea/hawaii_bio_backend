@@ -20,10 +20,9 @@ import java.util.stream.Collectors;
 public class TicketResponse {
     private int id;
     private Performance performance;
-
     private String ticketType;
-    private int amountOfTickets;
     private double ticketPrice;
+    private int hall_id;
 
     @JsonFormat(pattern = "dd-MM-yyyy hh:mm:ss",shape = JsonFormat.Shape.STRING)
     LocalDateTime created;
@@ -31,18 +30,17 @@ public class TicketResponse {
     @JsonFormat(pattern = "dd-MM-yyyy hh:mm:ss",shape = JsonFormat.Shape.STRING)
     LocalDateTime edited;
 
-    public TicketResponse(Ticket ticket, boolean allFields){
+    public TicketResponse(Ticket ticket){
         this.id = ticket.getId();
         this.performance = ticket.getPerformance();
+        this.hall_id = ticket.getPerformance().getCinemaHall().getId();
         this.ticketType = ticket.getTicketType();
-        this.amountOfTickets = ticket.getAmountOfTickets();
         this.ticketPrice = ticket.getTicketPrice();
-        if (allFields){
-            this.created = ticket.getTicketCreatedDate();
-        }
+        this.created = ticket.getTicketCreatedDate();
     }
+
     public static List<TicketResponse> getTicketFromEntities(List<Ticket> tickets){
-        return tickets.stream().map(ticket -> new TicketResponse(ticket, false)).collect(Collectors.toList());
+        return tickets.stream().map(ticket -> new TicketResponse(ticket)).collect(Collectors.toList());
     }
 }
 
