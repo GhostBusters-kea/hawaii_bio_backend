@@ -29,12 +29,15 @@ public class Ticket {
     @JoinColumn(name = "reservation_id", referencedColumnName = "id")
     private Reservation reservation;
 
+    private int seatname;
+
 
     public Ticket(TicketRequest body){
         this.id = body.getId();
-        this.TicketType = body.getTicketType();
         this.ticketPrice = body.getTicketPrice();
         this.performance = body.getPerformance();
+        this.seatname = body.getSeatname();
+        this.reservation = body.getReservation();
     }
 
     private String TicketType;

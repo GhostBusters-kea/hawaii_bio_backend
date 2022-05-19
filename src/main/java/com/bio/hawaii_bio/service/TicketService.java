@@ -37,8 +37,8 @@ public class TicketService {
     public TicketResponse editTicket(TicketRequest body, int ticketId){
         Ticket ticket = ticketRepo.findById(ticketId).orElseThrow(() -> new Client4xxException("no ticket found"));
         ticket.setPerformance(body.getPerformance());
-        ticket.setTicketType(body.getTicketType());
         ticket.setTicketPrice(body.getTicketPrice());
+        ticket.setSeatname(body.getSeatname());
         return new TicketResponse(ticket);
     }
 
