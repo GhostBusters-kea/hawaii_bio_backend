@@ -7,6 +7,8 @@ import lombok.Setter;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 @Getter
 @Setter
@@ -16,11 +18,10 @@ public class Seat {
     @Id
     private int id;
 
-    private int isReserved = 0;
 
     public Seat(SeatRequest body){
         this.id = body.getId();
-        this.id = body.getIsReserved();
+
     }
 
     public Seat(int id){
