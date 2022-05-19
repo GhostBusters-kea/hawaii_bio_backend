@@ -24,29 +24,29 @@ class TicketServiceTest {
     TicketService ticketService;
     Performance performance;
 
-    @BeforeEach
-    void setUp() {
-
-        Ticket ticket1 = new Ticket();
-        ticket1.setId(1);
-        ticket1.setTicketPrice(220);
-        ticket1.setPerformance(performance);
-        ticketRepo.save(ticket1);
-
-        Ticket ticket2 = new Ticket();
-        ticket2.setTicketPrice(400);
-        ticket2.setId(2);
-        ticket2.setPerformance(performance);
-        ticketRepo.save(ticket2);
-        ticketService = new TicketService(ticketRepo);
-    }
-
-
-    @Test
-    void getTickets() {
-        List<TicketResponse> tickets = ticketService.getTickets();
-        assertEquals(2, tickets.size());
-    }
+//    @BeforeEach
+//    void setUp() {
+//
+//        Ticket ticket1 = new Ticket();
+//        ticket1.setId(1);
+//        ticket1.setTicketPrice(220);
+//        ticket1.setPerformance(performance);
+//        ticketRepo.save(ticket1);
+//
+//        Ticket ticket2 = new Ticket();
+//        ticket2.setTicketPrice(400);
+//        ticket2.setId(2);
+//        ticket2.setPerformance(performance);
+//        ticketRepo.save(ticket2);
+//        ticketService = new TicketService(ticketRepo);
+//    }
+//
+//
+//    @Test
+//    void getTickets() {
+//        List<TicketResponse> tickets = ticketService.getTickets();
+//        assertEquals(2, tickets.size());
+//    }
 
 //    @Test
 //    void getTicket() {
