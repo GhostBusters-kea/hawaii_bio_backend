@@ -1,6 +1,7 @@
 package com.bio.hawaii_bio.dto;
 
 import com.bio.hawaii_bio.entity.Ticket;
+import com.bio.hawaii_bio.service.UserService;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -17,4 +18,5 @@ public class ReservationRequest {
     private int id;
     private LocalDateTime reservationDate;
     private Set<Ticket> tickets;
+
 }

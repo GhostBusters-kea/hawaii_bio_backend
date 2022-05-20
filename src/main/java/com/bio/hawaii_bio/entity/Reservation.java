@@ -6,6 +6,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.hibernate.annotations.CreationTimestamp;
+
 import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.util.HashSet;
@@ -16,6 +17,7 @@ import java.util.Set;
 @NoArgsConstructor
 @Entity
 public class Reservation {
+
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -42,6 +44,7 @@ public class Reservation {
     public Reservation(ReservationRequest body){
         this.id = body.getId();
         this.reservationDate = body.getReservationDate();
+
 
     }
 
